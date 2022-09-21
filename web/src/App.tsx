@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 
-import { GameBanner } from './components/GameBanner'
 import { CreateAdBanner } from './components/CreateAdBanner'
 import { CreateAdModal } from './components/CreateAdModal'
 
@@ -10,7 +9,9 @@ import axios from 'axios'
 import './styles/main.css'
 import logoImg from './assets/logo-nlw-esports.svg'
 
-interface Game {
+import { Carousel } from './components/Carousel'
+
+export interface Game {
   id: string
   title: string
   bannerUrl: string
@@ -36,23 +37,13 @@ function App() {
         Seu <span className="text-transparent bg-nlw-gradient bg-clip-text">duo</span> está aqui.
       </h1>
 
-      <div className="grid grid-cols-6 gap-6 mt-16">
-        {games.map(game => {
-          return (
-            <GameBanner
-              key={game.id}
-              title={game.title}
-              bannerUrl={game.bannerUrl}
-              adsCount={game._count.ads}
-            />
-          )
-        })}
-      </div>
+      <Carousel games={games} />
 
       <Dialog.Root>
         <CreateAdBanner />
         <CreateAdModal />
       </Dialog.Root>
+
     </div>
   )
 }
