@@ -6,7 +6,7 @@ import { CreateAdModal } from './components/CreateAdModal'
 import * as Dialog from '@radix-ui/react-dialog'
 import axios from 'axios'
 
-import './styles/main.css'
+
 import logoImg from './assets/logo-nlw-esports.svg'
 
 import { Carousel } from './components/Carousel'

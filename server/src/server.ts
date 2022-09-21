@@ -50,11 +50,12 @@ app.post('/games/:id/ads', async (req,res) => {
   return res.status(201).json(ad)
 })
 
-app.get('/games/:id/ads', async (req, res) => {
-  const gameId = req.params.id
+app.get('/games/:title/ads', async (req, res) => {
+  const gameTitle = req.params.title
 
   const ads = await prisma.add.findMany({
     select: {
+      game: true,
       id: true,
       name: true,
       weekDays: true,
@@ -65,11 +66,14 @@ app.get('/games/:id/ads', async (req, res) => {
 
     },
     where: {
-      gameId
+      game: {
+        title: gameTitle
+      }
     },
     orderBy: {
       createdAt: 'desc'
-    }
+    }    
+   
   })
 
   return res.json(ads.map(ad => {
