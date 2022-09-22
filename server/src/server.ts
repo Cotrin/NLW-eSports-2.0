@@ -6,12 +6,16 @@ import { PrismaClient } from '@prisma/client'
 import { convertHourStringToMinutes } from './utils/convert-hour-string-to-minutes'
 import { convertMinutesToHourString } from './utils/convert-minutes-to-hour-string'
 
+import { loginRoutes } from './login.routes'
+
 const app = express()
 app.use(express.json())
 app.use(cors())
 
 const prisma = new PrismaClient()
 
+
+app.use(loginRoutes)
 
 app.get('/games', async (req,res) => {
   const games = await prisma.game.findMany({
